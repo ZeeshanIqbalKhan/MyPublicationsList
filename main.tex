@@ -1,16 +1,37 @@
-\documentclass[12pt,a4paper]{article} 
-\usepackage{geometry}
+\documentclass[10pt,a4paper]{article}
+\usepackage[top = 1.0in, bottom = 1in, left=1in, right=1in]{geometry}
 \usepackage{xcolor}
-\usepackage[english]{babel}
 
-\newcommand{\frmname}[1]{\textbf{\textcolor{violet}{#1}}}
+\usepackage[sorting=ymdtn,defernumbers=true,style=ieee]{biblatex}
+
+% special sort style
+\DeclareSortingScheme{ymdtn}{
+  \sort[direction=descending]{\field{year}}
+  \sort[direction=descending]{\field{month}}
+  \sort{\field{title}}
+  \sort{\field{author}}
+}
+
+\addbibresource{MyPapers.bib}
+
+\newcommand{\frmname}[1]{\textbf{\textcolor{green!15!black}{#1}}}
+
+\newcommand\myname{\frmname{H. Z. I. Khan}}
 
 \begin{document}
+\vspace{-2cm}
 \begin{center}
-    \textbf{\Large{\textcolor{black}{Hafiz Zeeshan Iqbal Khan}}}
+\textbf{\Large{\textcolor{black}{Hafiz Zeeshan Iqbal Khan}}}
 \end{center}
-\renewcommand{\refname}{Conference Publications}
+\renewcommand{\refname}{List of Publications}
 \nocite{*}
-\bibliographystyle{unsrtdin}
-\bibliography{Conf}
-\end{document}
+
+%%% ----- Combined
+%\printbibliography[title=\refname,resetnumbers=true]
+
+%%% ----- Separated
+\printbibliography[title={Journal Publications:}, type=article,resetnumbers=true]
+
+\printbibliography[title={Conference Publications:}, type=inproceedings,resetnumbers=true]
+
+\end{document} 
